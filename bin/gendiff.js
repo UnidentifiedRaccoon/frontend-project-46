@@ -13,6 +13,15 @@ const { version } = JSON.parse(readFileSync(packagePath, 'utf-8'));
 program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
-  .version(version);
+  .version(version)
+  .option('-f, --format [type]', 'output format')
+  .arguments('<filepath1> <filepath2>')
+  .action((filepath1, filepath2, options) => {
+    console.log(`filepath1: ${filepath1}`);
+    console.log(`filepath2: ${filepath2}`);
+    if (options.format) {
+      console.log(`format: ${options.format}`);
+    }
+  });
 
 program.parse();
