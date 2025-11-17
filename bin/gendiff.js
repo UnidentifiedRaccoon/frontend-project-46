@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { program } from 'commander';
+import genDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,12 +17,8 @@ program
   .version(version)
   .option('-f, --format [type]', 'output format')
   .arguments('<filepath1> <filepath2>')
-  .action((filepath1, filepath2, options) => {
-    console.log(`filepath1: ${filepath1}`);
-    console.log(`filepath2: ${filepath2}`);
-    if (options.format) {
-      console.log(`format: ${options.format}`);
-    }
+  .action((filepath1, filepath2) => {
+    genDiff(filepath1, filepath2);
   });
 
 program.parse();
