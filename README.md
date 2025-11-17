@@ -15,20 +15,35 @@ npm link
 ```
 
 ## Использование
-Пока в проекте реализована справка, с которой можно ознакомиться через CLI:
 
+### Справка
 ```bash
 $ gendiff -h
-Usage: gendiff [options]
+Usage: gendiff [options] <filepath1> <filepath2>
 
 Compares two configuration files and shows a difference.
 
 Options:
-  -V, --version  output the version number
-  -h, --help     display help for command
+  -V, --version        output the version number
+  -f, --format [type]  output format
+  -h, --help           display help for command
 ```
 
-По мере реализации движка сравнения появятся примеры вызова с реальными файлами.
+### Сравнение плоских JSON файлов
+```bash
+$ gendiff file1.json file2.json
+{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
+```
+
+### Демонстрация работы
+[![asciicast](https://asciinema.org/a/XHMqz1zGTAN0Q0EtrRahZqNCu.svg)](https://asciinema.org/a/XHMqz1zGTAN0Q0EtrRahZqNCu)
 
 ## Скрипты Makefile
 

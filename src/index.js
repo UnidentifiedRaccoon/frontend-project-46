@@ -17,10 +17,34 @@ const genDiff = (filepath1, filepath2) => {
   const data1 = parseFile(filepath1);
   const data2 = parseFile(filepath2);
 
-  console.log('File 1 data:', data1);
-  console.log('File 2 data:', data2);
+  const keys1 = Object.keys(data1);
+  const keys2 = Object.keys(data2);
+  const allKeys = [...new Set([...keys1, ...keys2])].sort();
 
-  return { data1, data2 };
+  const lines = [];
+
+  allKeys.forEach((key) => {
+    const hasKey1 = key in data1;
+    const hasKey2 = key in data2;
+
+    if (hasKey1 && hasKey2) {
+      if (data1[key] === data2[key]) {
+        lines.push(`    ${key}: ${data1[key]}`);
+      } else {
+        lines.push(`  - ${key}: ${data1[key]}`);
+        lines.push(`  + ${key}: ${data2[key]}`);
+      }
+    } else if (hasKey1) {
+      lines.push(`  - ${key}: ${data1[key]}`);
+    } else {
+      lines.push(`  + ${key}: ${data2[key]}`);
+    }
+  });
+
+  const result = `{\n${lines.join('\n')}\n}`;
+  console.log(result);
+
+  return result;
 };
 
 export default genDiff;
