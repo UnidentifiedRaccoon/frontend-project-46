@@ -1,16 +1,13 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import parse from './parsers.js';
 
 const parseFile = (filepath) => {
   const absolutePath = path.resolve(process.cwd(), filepath);
   const content = readFileSync(absolutePath, 'utf-8');
   const ext = path.extname(filepath);
 
-  if (ext === '.json') {
-    return JSON.parse(content);
-  }
-
-  throw new Error(`Unsupported file format: ${ext}`);
+  return parse(content, ext);
 };
 
 const genDiff = (filepath1, filepath2) => {
@@ -19,7 +16,7 @@ const genDiff = (filepath1, filepath2) => {
 
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
-  const allKeys = [...new Set([...keys1, ...keys2])].sort();
+  const allKeys = [...new Set([...keys1, ...keys2])].sort((a, b) => a.length - b.length);
 
   const lines = [];
 

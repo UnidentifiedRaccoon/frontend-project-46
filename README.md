@@ -44,8 +44,23 @@ $ gendiff file1.json file2.json
 }
 ```
 
+### Сравнение плоских YAML файлов
+```bash
+$ gendiff file1.yml file2.yml
+{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
+```
+
+Поддерживаются оба расширения: `.yml` и `.yaml`
+
 ### Демонстрация работы
-[![asciicast](https://asciinema.org/a/XHMqz1zGTAN0Q0EtrRahZqNCu.svg)](https://asciinema.org/a/XHMqz1zGTAN0Q0EtrRahZqNCu)
+[![asciicast](https://asciinema.org/a/cYjhTZ1O7cqOsd8iSJUCVSEZl.svg)](https://asciinema.org/a/cYjhTZ1O7cqOsd8iSJUCVSEZl)
 
 ## Скрипты Makefile
 
