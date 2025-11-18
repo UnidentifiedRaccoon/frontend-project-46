@@ -8,6 +8,11 @@ export default [
       globals: {
         console: 'readonly',
         process: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        describe: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
       },
     },
     plugins: {

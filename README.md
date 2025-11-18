@@ -2,7 +2,9 @@
 
 ### Статус проверок
 [![Actions Status](https://github.com/UnidentifiedRaccoon/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/UnidentifiedRaccoon/frontend-project-46/actions)
-[<img src="https://sonarcloud.io/images/project_badges/sonarcloud-light.svg" alt="SonarCloud" height="20">](https://sonarcloud.io/summary/new_code?id=UnidentifiedRaccoon_frontend-project-46)
+[![CI](https://github.com/UnidentifiedRaccoon/frontend-project-46/actions/workflows/ci.yml/badge.svg)](https://github.com/UnidentifiedRaccoon/frontend-project-46/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=UnidentifiedRaccoon_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=UnidentifiedRaccoon_frontend-project-46)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=UnidentifiedRaccoon_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=UnidentifiedRaccoon_frontend-project-46)
 
 ## Описание
 `gendiff` — это консольная утилита, которая сравнивает два конфигурационных файла и отображает разницу между ними в удобном для чтения формате. Приложение распространяется как npm‑пакет `@hexlet/code`, поэтому его можно установить локально или использовать как библиотеку в своём проекте.
@@ -49,6 +51,7 @@ $ gendiff file1.json file2.json
 
 ```bash
 make install   # npm ci
+make test      # npm test
 make lint      # npx eslint .
 make publish   # npm publish --dry-run
 make gendiff   # node bin/gendiff.js

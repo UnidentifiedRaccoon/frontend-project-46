@@ -42,8 +42,6 @@ const genDiff = (filepath1, filepath2) => {
   });
 
   const result = `{\n${lines.join('\n')}\n}`;
-  console.log(result);
-
   return result;
 };
 
