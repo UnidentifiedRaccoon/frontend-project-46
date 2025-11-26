@@ -1,7 +1,7 @@
-const isObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value);
+import { isPlainObject } from '../utils.js';
 
 const formatValue = (value) => {
-  if (isObject(value)) {
+  if (isPlainObject(value)) {
     return '[complex value]';
   }
 
@@ -16,31 +16,25 @@ const formatValue = (value) => {
   return String(value);
 };
 
-const formatNode = (node, path) => {
-  const fullPath = path ? `${path}.${node.key}` : node.key;
+const formatPlain = (diff, ancestry = []) => diff
+  .flatMap((node) => {
+    const path = [...ancestry, node.key].join('.');
 
-  switch (node.type) {
-    case 'added':
-      return `Property '${fullPath}' was added with value: ${formatValue(node.value)}`;
-    case 'removed':
-      return `Property '${fullPath}' was removed`;
-    case 'changed':
-      return `Property '${fullPath}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`;
-    case 'unchanged':
-      return null;
-    case 'nested':
-      return node.children
-        .map((child) => formatNode(child, fullPath))
-        .filter((line) => line !== null)
-        .join('\n');
-    default:
-      throw new Error(`Unknown node type: ${node.type}`);
-  }
-};
-
-const formatPlain = (diff) => diff
-  .map((node) => formatNode(node, ''))
-  .filter((line) => line !== null)
+    switch (node.type) {
+      case 'added':
+        return `Property '${path}' was added with value: ${formatValue(node.value)}`;
+      case 'removed':
+        return `Property '${path}' was removed`;
+      case 'changed':
+        return `Property '${path}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`;
+      case 'nested':
+        return formatPlain(node.children, [...ancestry, node.key]);
+      case 'unchanged':
+        return [];
+      default:
+        throw new Error(`Unknown node type: ${node.type}`);
+    }
+  })
   .join('\n');
 
 export default formatPlain;
