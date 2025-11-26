@@ -1,11 +1,11 @@
 import { isPlainObject } from './utils.js';
 
 const buildDiff = (data1, data2) => {
-  const keys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort();
+  const keys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort((a, b) => a.localeCompare(b));
 
   return keys.map((key) => {
-    const hasFirst = Object.prototype.hasOwnProperty.call(data1, key);
-    const hasSecond = Object.prototype.hasOwnProperty.call(data2, key);
+    const hasFirst = Object.hasOwn(data1, key);
+    const hasSecond = Object.hasOwn(data2, key);
 
     if (!hasFirst) {
       return { key, type: 'added', value: data2[key] };
