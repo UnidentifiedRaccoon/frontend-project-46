@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import parse from './parsers.js';
-import formatStylish from './formatters/stylish.js';
+import format from './formatters/index.js';
 
 const parseFile = (filepath) => {
   const absolutePath = path.resolve(process.cwd(), filepath);
@@ -66,17 +66,13 @@ const buildDiff = (data1, data2) => {
   });
 };
 
-const genDiff = (filepath1, filepath2, format = 'stylish') => {
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const data1 = parseFile(filepath1);
   const data2 = parseFile(filepath2);
 
   const diff = buildDiff(data1, data2);
 
-  if (format === 'stylish') {
-    return formatStylish(diff);
-  }
-
-  throw new Error(`Unsupported format: ${format}`);
+  return format(diff, formatName);
 };
 
 export default genDiff;

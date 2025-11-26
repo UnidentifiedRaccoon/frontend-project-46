@@ -26,3 +26,21 @@ describe('genDiff - nested structures', () => {
     expect(genDiff(file1, file2)).toBe(expected);
   });
 });
+
+describe('genDiff - plain format', () => {
+  test('genDiff plain JSON', () => {
+    const file1 = getFixturePath('file1-nested.json');
+    const file2 = getFixturePath('file2-nested.json');
+    const expected = readFile('expected-plain.txt');
+
+    expect(genDiff(file1, file2, 'plain')).toBe(expected);
+  });
+
+  test('genDiff plain YAML', () => {
+    const file1 = getFixturePath('file1-nested.yml');
+    const file2 = getFixturePath('file2-nested.yml');
+    const expected = readFile('expected-plain.txt');
+
+    expect(genDiff(file1, file2, 'plain')).toBe(expected);
+  });
+});

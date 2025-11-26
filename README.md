@@ -116,6 +116,27 @@ $ gendiff file1.json file2.json
 $ gendiff -f stylish file1.json file2.json
 ```
 
+### Формат plain
+
+Утилита также поддерживает вывод в формате `plain`, который отображает изменения в текстовом виде:
+
+```bash
+$ gendiff --format plain file1.json file2.json
+Property 'common.follow' was added with value: false
+Property 'common.setting2' was removed
+Property 'common.setting3' was updated. From true to null
+Property 'common.setting4' was added with value: 'blah blah'
+Property 'common.setting5' was added with value: [complex value]
+Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
+Property 'common.setting6.ops' was added with value: 'vops'
+Property 'group1.baz' was updated. From 'bas' to 'bars'
+Property 'group1.nest' was updated. From [complex value] to 'str'
+Property 'group2' was removed
+Property 'group3' was added with value: [complex value]
+```
+
+[![asciicast](https://asciinema.org/a/i3tBSXGZtMOsBHVxIPmmO416w.svg)](https://asciinema.org/a/i3tBSXGZtMOsBHVxIPmmO416w)
+
 ### Демонстрация работы
 [![asciicast](https://asciinema.org/a/cYjhTZ1O7cqOsd8iSJUCVSEZl.svg)](https://asciinema.org/a/cYjhTZ1O7cqOsd8iSJUCVSEZl)
 [![asciicast](https://asciinema.org/a/qorjEXsiWNG9XAQF1TjeLenjt.svg)](https://asciinema.org/a/qorjEXsiWNG9XAQF1TjeLenjt)
