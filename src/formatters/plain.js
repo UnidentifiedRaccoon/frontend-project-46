@@ -1,40 +1,40 @@
-import { isPlainObject } from '../utils.js';
+import { isPlainObject } from '../utils.js'
 
 const formatValue = (value) => {
   if (isPlainObject(value)) {
-    return '[complex value]';
+    return '[complex value]'
   }
 
   if (typeof value === 'string') {
-    return `'${value}'`;
+    return `'${value}'`
   }
 
   if (value === null) {
-    return 'null';
+    return 'null'
   }
 
-  return String(value);
-};
+  return String(value)
+}
 
 const formatPlain = (diff, ancestry = []) => diff
   .flatMap((node) => {
-    const path = [...ancestry, node.key].join('.');
+    const path = [...ancestry, node.key].join('.')
 
     switch (node.type) {
       case 'added':
-        return `Property '${path}' was added with value: ${formatValue(node.value)}`;
+        return `Property '${path}' was added with value: ${formatValue(node.value)}`
       case 'removed':
-        return `Property '${path}' was removed`;
+        return `Property '${path}' was removed`
       case 'changed':
-        return `Property '${path}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`;
+        return `Property '${path}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`
       case 'nested':
-        return formatPlain(node.children, [...ancestry, node.key]);
+        return formatPlain(node.children, [...ancestry, node.key])
       case 'unchanged':
-        return [];
+        return []
       default:
-        throw new Error(`Unknown node type: ${node.type}`);
+        throw new Error(`Unknown node type: ${node.type}`)
     }
   })
-  .join('\n');
+  .join('\n')
 
-export default formatPlain;
+export default formatPlain

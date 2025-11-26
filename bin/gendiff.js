@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { program } from 'commander';
-import genDiff from '../src/index.js';
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { program } from 'commander'
+import genDiff from '../src/index.js'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const packagePath = path.resolve(__dirname, '../package.json');
-const { version } = JSON.parse(readFileSync(packagePath, 'utf-8'));
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const packagePath = path.resolve(__dirname, '../package.json')
+const { version } = JSON.parse(readFileSync(packagePath, 'utf-8'))
 
 program
   .name('gendiff')
@@ -18,8 +18,8 @@ program
   .option('-f, --format [type]', 'output format', 'stylish')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2, options) => {
-    const diff = genDiff(filepath1, filepath2, options.format);
-    console.log(diff);
-  });
+    const diff = genDiff(filepath1, filepath2, options.format)
+    console.log(diff)
+  })
 
-program.parse();
+program.parse()
