@@ -44,3 +44,21 @@ describe('genDiff - plain format', () => {
     expect(genDiff(file1, file2, 'plain')).toBe(expected);
   });
 });
+
+describe('genDiff - json format', () => {
+  test('genDiff json JSON', () => {
+    const file1 = getFixturePath('file1-nested.json');
+    const file2 = getFixturePath('file2-nested.json');
+    const expected = readFile('expected-json.txt');
+
+    expect(genDiff(file1, file2, 'json')).toBe(expected);
+  });
+
+  test('genDiff json YAML', () => {
+    const file1 = getFixturePath('file1-nested.yml');
+    const file2 = getFixturePath('file2-nested.yml');
+    const expected = readFile('expected-json.txt');
+
+    expect(genDiff(file1, file2, 'json')).toBe(expected);
+  });
+});

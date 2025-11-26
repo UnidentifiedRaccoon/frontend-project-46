@@ -137,6 +137,31 @@ Property 'group3' was added with value: [complex value]
 
 [![asciicast](https://asciinema.org/a/i3tBSXGZtMOsBHVxIPmmO416w.svg)](https://asciinema.org/a/i3tBSXGZtMOsBHVxIPmmO416w)
 
+### Формат json
+
+Утилита также поддерживает вывод в формате `json`, который возвращает структурированные данные для использования другими программами:
+
+```bash
+$ gendiff --format json file1.json file2.json
+[
+  {
+    "key": "common",
+    "type": "nested",
+    "children": [
+      {
+        "key": "follow",
+        "type": "added",
+        "value": false
+      },
+      ...
+    ]
+  },
+  ...
+]
+```
+
+[![asciicast](https://asciinema.org/a/0kn1VaZ0hEMpTPRjSWFLaxItF.svg)](https://asciinema.org/a/0kn1VaZ0hEMpTPRjSWFLaxItF)
+
 ### Демонстрация работы
 [![asciicast](https://asciinema.org/a/cYjhTZ1O7cqOsd8iSJUCVSEZl.svg)](https://asciinema.org/a/cYjhTZ1O7cqOsd8iSJUCVSEZl)
 [![asciicast](https://asciinema.org/a/qorjEXsiWNG9XAQF1TjeLenjt.svg)](https://asciinema.org/a/qorjEXsiWNG9XAQF1TjeLenjt)
